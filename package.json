@@ -11,9 +11,10 @@
     "url": "git+https://github.com/LucasEduMartins/gameMakerJs.git"
   },
   "files": [
-    "./dist"
+    "dist"
   ],
   "scripts": {
+    "demo": "vite --open demo/index.html",
     "dev": "vite",
     "dev:rollup": "rollup -c -w",
     "build": "tsc && vite build",

@@ -1,13 +1,14 @@
 import { Service, ServiceType } from "./Service";
 
-type ColisionServiceType = ServiceType & { eventName: string };
+type ColisionServiceType = ServiceType & { eventName: string; callback() };
 
 export class ColisionService extends Service {
   private eventName: string;
 
-  constructor({ objectsKeys, eventName }: ColisionServiceType) {
+  constructor({ objectsKeys, eventName, callback }: ColisionServiceType) {
     super({ objectsKeys });
     this.eventName = eventName;
+    callback();
   }
 
   execute(): void {
