@@ -1,9 +1,15 @@
 {
-  "name": "gamemakerjs",
+  "name": "@LucasEduMartins/gamemakerjs",
   "private": false,
   "version": "0.0.10",
   "type": "module",
   "main": "dist/bundle-umd.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasEduMartins/gameMakerJs.git"
+  },
+  "author": "Lucas Martins",
+  "license": "MIT",
   "files": [
     "./dist"
   ],
@@ -28,6 +34,6 @@
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "publishConfig": {
-    "@lucasmartins27:registry": "https://npm.pkg.github.com"
+    "@LucasEduMartins:registry": "https://npm.pkg.github.com"
   }
 }
