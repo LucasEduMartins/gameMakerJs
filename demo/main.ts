@@ -58,7 +58,9 @@ const colisionService = new ColisionService({
     bar.x;
   },
 });
+
 gameController.setService(drawService);
 gameController.setService(moveObjectsService);
+gameController.setService(colisionService);
 
 gameController.createGame();
