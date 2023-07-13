@@ -1,7 +1,7 @@
 {
   "name": "gamemakerjs",
   "private": false,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "main": "dist/bundle-umd.js",
   "author": "Lucas Martins",
