@@ -1,11 +1,12 @@
 import "./style.css";
 import { Canvas } from "./components/Canvas";
-import { GamerController } from "./controller/GamerController";
+import { GamerController } from "./controllers/GamerController";
 import { Circle } from "./components/objects/Circle";
 import { Rect } from "./components/objects/Rect";
 import { MoveObjectsService } from "./services/MoveObjectsService";
 import { DrawService } from "./services/DrawService";
 import { ObjectRepository } from "./repositorys/ObjectRepository";
+import { ColisionService } from "./services";
 
 const appContainer = document.querySelector<HTMLDivElement>("#app");
 
@@ -50,6 +51,10 @@ const moveObjectsService = new MoveObjectsService({
   objectsKeys: ["bar"],
 });
 
+const colisionService = new ColisionService({
+  objectsKeys: ["ball"],
+  eventName: "teste",
+});
 gameController.setService(drawService);
 gameController.setService(moveObjectsService);
 

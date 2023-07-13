@@ -7,7 +7,6 @@ export class ColisionService extends Service {
 
   constructor({ objectsKeys, eventName }: ColisionServiceType) {
     super({ objectsKeys });
-
     this.eventName = eventName;
   }
 
