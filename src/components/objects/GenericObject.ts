@@ -1,5 +1,5 @@
 import { Canvas } from "../Canvas";
-type ObjectType = {
+export type ObjectType = {
   canvas: Canvas;
   x: number;
   y: number;

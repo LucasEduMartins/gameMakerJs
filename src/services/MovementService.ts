@@ -1,9 +1,9 @@
 import { Service, ServiceType } from "./Service";
 
-type MoveObjectsServiceType = ServiceType;
+export type MovementServiceType = ServiceType;
 
-export class MoveObjectsService extends Service {
-  constructor({ objectsKeys }: MoveObjectsServiceType) {
+export class MovementService extends Service {
+  constructor({ objectsKeys }: MovementServiceType) {
     super({ objectsKeys });
   }
 

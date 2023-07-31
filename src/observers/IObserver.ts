@@ -1,12 +1,9 @@
-interface Subject {
+export interface Subject {
   attach(observer: Observer): void;
   detach(observer: Observer): void;
   notify(): void;
 }
 
-interface Observer {
-  // Receive update from subject.
+export interface Observer {
   update(subject: Subject): void;
 }
-
-type test = { aaa: string };

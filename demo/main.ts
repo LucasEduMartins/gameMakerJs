@@ -1,14 +1,10 @@
 import "./style.css";
 import { Canvas } from "../src/components/Canvas";
 import { GamerController } from "../src/controllers/GamerController";
-import { Circle } from "../src/components/objects/Circle";
-import { Rect } from "../src/components/objects/Rect";
-import { MoveObjectsService } from "../src/services/MoveObjectsService";
-import { DrawService } from "../src/services/DrawService";
+import { Circle, Rect } from "../src/components/objects";
 import { ObjectRepository } from "../src/repositorys/ObjectRepository";
-import { ColisionService } from "../src/services";
 
-const appContainer = document.querySelector<HTMLDivElement>("#app");
+const appContainer = document.querySelector("#app") as HTMLDivElement;
 
 const canvas = new Canvas({
   heigth: 600,
@@ -16,16 +12,11 @@ const canvas = new Canvas({
   container: appContainer,
 });
 
-const gameController = new GamerController({
-  canvas,
-});
-
 const ball = new Circle({
-  x: 50,
-  y: 50,
+  x: 350,
+  y: 350,
   color: "#ff0000",
-  height: 50,
-  width: 50,
+  radius: 50,
   canvas,
 });
 
@@ -43,24 +34,7 @@ const objectRepository = ObjectRepository.getInstance();
 objectRepository.save("ball", ball);
 objectRepository.save("bar", bar);
 
-const drawService = new DrawService({
+const gameController = new GamerController({
   canvas,
 });
-
-const moveObjectsService = new MoveObjectsService({
-  objectsKeys: ["bar"],
-});
-
-const colisionService = new ColisionService({
-  objectsKeys: ["ball", "bar"],
-  eventName: "teste",
-  callback: () => {
-    bar.x;
-  },
-});
-
-gameController.setService(drawService);
-gameController.setService(moveObjectsService);
-gameController.setService(colisionService);
-
 gameController.createGame();

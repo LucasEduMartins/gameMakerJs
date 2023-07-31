@@ -1,10 +1,16 @@
+export type CanvasType = {
+  width: number;
+  heigth: number;
+  container: HTMLDivElement;
+};
+
 export class Canvas {
   private width: number;
   private heigth: number;
   private container: HTMLDivElement;
   private htmlCanvas: HTMLCanvasElement;
 
-  constructor({ width, heigth, container }) {
+  constructor({ width, heigth, container }: CanvasType) {
     this.width = width;
     this.heigth = heigth;
     this.container = container;

@@ -1,7 +1,7 @@
 {
   "name": "gamemakerjs",
   "private": false,
-  "version": "0.1.5",
+  "version": "0.1.7",
   "type": "module",
   "main": "dist/bundle-umd.js",
   "author": "Lucas Martins",
@@ -10,7 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/LucasEduMartins/gameMakerJs.git"
   },
-  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -21,18 +20,28 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "build:rollup": "rollup --config",
-    "prepublish": "npm run build:rollup"
+    "prepublish": "npm run build:rollup",
+    "build:babel": "npx babel src --out-dir lib --extensions \".ts\""
   },
   "devDependencies": {
-    "rollup": "^3.26.2",
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-typescript": "^7.22.5",
+    "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^25.0.2",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.2",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "lodash": "^4.17.21",
+    "rollup": "^3.26.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-import-css": "^3.3.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript": "^1.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
+  },
+  "dependencies": {
+    "vite-plugin-dts": "^3.4.0"
   }
 }

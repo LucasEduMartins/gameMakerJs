@@ -5,15 +5,18 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+
+    "allowJs": true,
     "declaration": true,
     "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
 
     /* Linting */
     "strict": true,
@@ -23,5 +26,5 @@
     "noImplicitAny": false,
     "strictPropertyInitialization": false
   },
-  "include": ["src", "demo/main.ts"]
+  "include": ["src"]
 }

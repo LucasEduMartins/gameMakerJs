@@ -1,5 +1,5 @@
 import { ColisionService } from "./ColisionService";
 import { DrawService } from "./DrawService";
-import { MoveObjectsService } from "./MoveObjectsService";
+import { MovementService } from "./MovementService";
 
-export { ColisionService, DrawService, MoveObjectsService };
+export { ColisionService, DrawService, MovementService };
