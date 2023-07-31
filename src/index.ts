@@ -1,6 +1,14 @@
-import * as Components from "./components";
-import * as Services from "./services";
-import * as Controllers from "./controllers";
-import * as Repositorys from "./repositorys";
+import { Canvas, Objects } from "./components";
+import { ColisionService, DrawService, MovementService } from "./services";
+import { GamerController } from "./controllers";
+import { ObjectRepository } from "./repositorys";
 
-export { Components, Services, Controllers, Repositorys };
+export {
+  Canvas,
+  Objects,
+  ColisionService,
+  DrawService,
+  MovementService,
+  GamerController,
+  ObjectRepository,
+};
