@@ -1,3 +1,1 @@
-import { ObjectRepository } from "./ObjectRepository";
-
-export { ObjectRepository };
+export { ObjectRepository } from "./ObjectRepository";

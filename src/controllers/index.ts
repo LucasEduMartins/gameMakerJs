@@ -1,3 +1,1 @@
-import { GamerController } from "./GamerController";
-
-export { GamerController };
+export { GamerController } from "./GamerController";

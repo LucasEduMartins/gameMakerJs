@@ -1,5 +1,3 @@
-import { ColisionService } from "./ColisionService";
-import { DrawService } from "./DrawService";
-import { MovementService } from "./MovementService";
-
-export { ColisionService, DrawService, MovementService };
+export { ColisionService } from "./ColisionService";
+export { DrawService } from "./DrawService";
+export { MovementService } from "./MovementService";

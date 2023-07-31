@@ -1,5 +1,3 @@
-import { Circle } from "./Circle";
-import { Rect } from "./Rect";
-import { GenericObject } from "./GenericObject";
-
-export { Circle, Rect, GenericObject };
+export { Circle } from "./Circle";
+export { Rect } from "./Rect";
+export { GenericObject } from "./GenericObject";

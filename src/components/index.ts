@@ -1,4 +1,2 @@
-import * as Objects from "./objects";
-import { Canvas } from "./Canvas";
-
-export { Objects, Canvas };
+export { Circle, GenericObject, Rect } from "./objects";
+export { Canvas } from "./Canvas";

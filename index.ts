@@ -1,6 +1,8 @@
 export {
   Canvas,
-  Objects,
+  Circle,
+  GenericObject,
+  Rect,
   ColisionService,
   DrawService,
   MovementService,
