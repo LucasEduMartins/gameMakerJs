@@ -1,34 +1,29 @@
+import { ObjectRepositoryType } from "../repositorys/ObjectRepository";
 import { Service, ServiceType } from "./Service";
 
-export type MovementServiceType = ServiceType;
+export type CallbackMovimentServiceType = (
+  event: any,
+  objects: ObjectRepositoryType[]
+) => void;
+
+export type MovementServiceType = ServiceType & {
+  event: keyof DocumentEventMap;
+  callback: CallbackMovimentServiceType;
+};
 
 export class MovementService extends Service {
-  constructor({ objectsKeys }: MovementServiceType) {
+  private event: keyof DocumentEventMap;
+  private callback: Function;
+
+  constructor({ objectsKeys, event, callback }: MovementServiceType) {
     super({ objectsKeys });
+    this.event = event;
+    this.callback = callback;
   }
 
   execute(): void {
-    document.addEventListener("keydown", ({ key }) => {
-      if (key == "ArrowLeft") {
-        this.objects.forEach((obj) => {
-          obj.object.x -= obj.object.speed;
-        });
-      }
-      if (key == "ArrowUp") {
-        this.objects.forEach((obj) => {
-          obj.object.y -= obj.object.speed;
-        });
-      }
-      if (key == "ArrowRight") {
-        this.objects.forEach((obj) => {
-          obj.object.x += obj.object.speed;
-        });
-      }
-      if (key == "ArrowDown") {
-        this.objects.forEach((obj) => {
-          obj.object.y += obj.object.speed;
-        });
-      }
+    document.addEventListener(this.event, (event) => {
+      this.callback(event, this.objects);
     });
   }
 }

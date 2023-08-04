@@ -3,6 +3,8 @@ import { Canvas } from "../src/components/Canvas";
 import { GamerController } from "../src/controllers/GamerController";
 import { Circle, Rect } from "../src/components/objects";
 import { ObjectRepository } from "../src/repositorys/ObjectRepository";
+import { MovementService } from "../src/services";
+import { CallbackMovimentServiceType } from "../src/services/MovementService";
 
 const appContainer = document.querySelector("#app") as HTMLDivElement;
 
@@ -37,4 +39,40 @@ objectRepository.save("bar", bar);
 const gameController = new GamerController({
   canvas,
 });
+
+const movimentServiceCallback: CallbackMovimentServiceType = (
+  event,
+  objects
+) => {
+  const { key } = event;
+
+  if (key == "ArrowLeft") {
+    objects.forEach((obj) => {
+      obj.object.x -= obj.object.speed;
+    });
+  }
+  if (key == "ArrowUp") {
+    objects.forEach((obj) => {
+      obj.object.y -= obj.object.speed;
+    });
+  }
+  if (key == "ArrowRight") {
+    objects.forEach((obj) => {
+      obj.object.x += obj.object.speed;
+    });
+  }
+  if (key == "ArrowDown") {
+    objects.forEach((obj) => {
+      obj.object.y += obj.object.speed;
+    });
+  }
+};
+
+const movimentService = new MovementService({
+  objectsKeys: ["ball"],
+  event: "keydown",
+  callback: movimentServiceCallback,
+});
+
+gameController.setService(movimentService);
 gameController.createGame();
