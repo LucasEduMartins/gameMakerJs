@@ -1,1 +1,1 @@
-export { GamerController } from "./GamerController";
+export { Game } from "./Game";

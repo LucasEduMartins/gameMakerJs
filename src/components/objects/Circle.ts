@@ -1,17 +1,18 @@
+import { Game } from "../../controllers/Game";
 import { GenericObject, ObjectType } from "./GenericObject";
-type CircleType = Omit<ObjectType, "width" | "height"> & { radius: number };
+export type CirclePropsType = Omit<ObjectType, "width" | "height"> & {
+  radius: number;
+};
 
-export class Circle extends GenericObject {
-  constructor({ canvas, radius, x, y, color }: CircleType) {
-    super({ canvas, height: radius, width: radius, x, y, color });
+export abstract class Circle extends GenericObject {
+  constructor({ radius, x, y, color }: CirclePropsType) {
+    super({ height: radius * 2, width: radius * 2, x, y, color });
   }
 
-  create(): void {
-    this.canvas.getContext()!.fillStyle = this.color;
-    this.canvas.getContext()!.beginPath();
-    this.canvas
-      .getContext()!
-      .arc(this.x, this.y, this.width, 0, Math.PI * 2, false);
-    this.canvas.getContext()!.fill();
+  render(game: Game): void {
+    game.getContext().fillStyle = this.color;
+    game.getContext().beginPath();
+    game.getContext().arc(this.x, this.y, this.width, 0, Math.PI * 2, false);
+    game.getContext().fill();
   }
 }
