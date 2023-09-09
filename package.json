@@ -1,9 +1,16 @@
 {
   "name": "gamemakerjs",
   "private": false,
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "author": "Lucas Martins",
   "license": "MIT",
   "repository": {
@@ -13,14 +20,19 @@
   "files": [
     "dist"
   ],
+  "homepage": "https://LucasEduMartins.github.io/gameMakerJs",
   "scripts": {
     "demo": "vite --open demo/index.html",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^6.0.0",
+    "react-scripts": "^2.1.8",
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
     "vite-plugin-dts": "^3.4.0"

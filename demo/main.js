@@ -4,10 +4,10 @@ import { Game } from "../src/controllers";
 
 // create a custom Rect to your game
 class Square extends Rect {
-  update(game: Game) {}
+  update() {}
 
   // handle the input event by keyboard event
-  handleInput(e: KeyboardEvent) {
+  handleInput(e) {
     const { key } = e;
 
     if (key == "ArrowLeft") this.x -= this.speed;
@@ -20,10 +20,10 @@ class Square extends Rect {
 // create a custom Circle object to your game
 class Ball extends Circle {
   // create custom properties to your game object
-  speedX: number;
-  speedY: number;
+  speedX;
+  speedY;
 
-  constructor(props: CirclePropsType) {
+  constructor(props) {
     super(props);
     this.speedX = this.speed;
     this.speedY = this.speed;
@@ -31,7 +31,7 @@ class Ball extends Circle {
 
   // implements automatic moviment to the ball
   // and verify the collision with other objects
-  update(game: Game) {
+  update(game) {
     const canvas = game.getCanvas();
     this.y += this.speedY;
     this.x += this.speedX;
@@ -41,9 +41,9 @@ class Ball extends Circle {
     if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
   }
 
-  handleInput(e: KeyboardEvent) {}
+  handleInput() {}
 
-  collidesWith(objects: GenericObject[]) {
+  collidesWith(objects) {
     for (const object of objects) {
       if (this !== object) {
         if (
