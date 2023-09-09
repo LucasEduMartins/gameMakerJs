@@ -1,39 +1,40 @@
 export type CanvasType = {
   width: number;
-  heigth: number;
+  height: number;
   container: HTMLDivElement;
 };
 
 export class Canvas {
-  private width: number;
-  private heigth: number;
+  public width: number;
+  public height: number;
   private container: HTMLDivElement;
   private htmlCanvas: HTMLCanvasElement;
+  private context: CanvasRenderingContext2D;
 
-  constructor({ width, heigth, container }: CanvasType) {
+  constructor({ width, height, container }: CanvasType) {
     this.width = width;
-    this.heigth = heigth;
+    this.height = height;
     this.container = container;
   }
 
   create() {
     const canvas = document.createElement("canvas");
-    canvas.height = this.heigth;
+
+    canvas.height = this.height;
     canvas.width = this.width;
     canvas.setAttribute("style", "border:1px solid");
-    this.container!.innerHTML = canvas.outerHTML;
 
-    this.htmlCanvas = document.getElementsByTagName("canvas")[0];
-
+    this.container.appendChild(canvas);
+    this.context = canvas?.getContext("2d") as CanvasRenderingContext2D;
     return this;
   }
 
   reset() {
-    this.htmlCanvas.getContext("2d")!.fillStyle = "#ffffff";
-    this.htmlCanvas.getContext("2d")!.fillRect(0, 0, this.width, this.heigth);
+    this.context.fillStyle = "#ffffff";
+    this.context.fillRect(0, 0, this.width, this.height);
   }
 
   getContext() {
-    return this.htmlCanvas.getContext("2d");
+    return this.context;
   }
 }

@@ -24,7 +24,7 @@ export abstract class GenericObject {
     this.color = color || "#0000ff";
     this.width = width;
     this.height = height;
-    this.speed = speed || 5;
+    this.speed = speed || 20;
   }
 
   abstract render(game: Game);
