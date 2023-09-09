@@ -1,5 +1,4 @@
-import { Game, Circle, Rect } from "../dist/index.umd.cjs";
-import { RandomValues } from "../src/utils";
+import { Game, Circle, Rect, RandomValues } from "../dist/index.js";
 
 // create a custom Rect to your game
 class Square extends Rect {
