@@ -12,6 +12,10 @@ export default class CanvasAdpter implements UIHandleObjectPort {
     this.height = height;
   }
 
+  getContainer() {
+    return this.canvas;
+  }
+
   createContainer() {
     this.canvas = document.createElement("canvas");
     this.canvas.width = this.width;
@@ -26,8 +30,8 @@ export default class CanvasAdpter implements UIHandleObjectPort {
 
     for (const object of objects) {
       this.context.fillStyle = object.color;
-      this.context.beginPath();
-      if (object instanceof Circle)
+
+      if (object instanceof Circle) {
         this.context.arc(
           object.x,
           object.y,
@@ -36,11 +40,27 @@ export default class CanvasAdpter implements UIHandleObjectPort {
           Math.PI * 2,
           false
         );
+        this.context.beginPath();
+        this.context.arc(
+          object.x,
+          object.y,
+          object.width,
+          0,
+          Math.PI * 2,
+          false
+        );
+        this.context.fill();
+      }
+
       if (object instanceof Rect) {
-        // context.strokeRect(this.x, this.y, this.width, this.height);
+        this.context.strokeRect(
+          object.x,
+          object.y,
+          object.width,
+          object.height
+        );
         this.context.fillRect(object.x, object.y, object.width, object.height);
       }
-      this.context.fill();
     }
   }
 }

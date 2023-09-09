@@ -1,10 +1,20 @@
-import { Circle, GenericObject, Rect } from "../src/components";
-import { CirclePropsType } from "../src/components/objects/Circle";
-import { Game } from "../src/controllers";
+import { Game, Circle, Rect } from "../dist/index.umd.cjs";
+import { RandomValues } from "../src/utils";
 
 // create a custom Rect to your game
 class Square extends Rect {
-  update() {}
+  isListening = false;
+  update(game) {
+    if (this.isListening) return;
+
+    game.getContainer().addEventListener("mousemove", (e) => {
+      const rect = game.getContainer().getBoundingClientRect();
+      this.x = e.clientX - rect.left - this.width / 2;
+      this.y = e.clientY - rect.top - this.height / 2;
+    });
+
+    this.isListening = true;
+  }
 
   // handle the input event by keyboard event
   handleInput(e) {
@@ -32,13 +42,13 @@ class Ball extends Circle {
   // implements automatic moviment to the ball
   // and verify the collision with other objects
   update(game) {
-    const canvas = game.getCanvas();
+    const container = game.getContainer();
     this.y += this.speedY;
     this.x += this.speedX;
     this.collidesWith(game.getObjects());
 
-    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > container.height) this.speedY *= -1;
+    if (this.x < 0 || this.x > container.width) this.speedX *= -1;
   }
 
   handleInput() {}
@@ -65,11 +75,130 @@ class Ball extends Circle {
 const game = new Game({ width: 800, height: 600 });
 
 // add some object
-game.addObject(
-  new Square({ x: 100, y: 100, width: 25, height: 100, speed: 30 })
-);
+// game.addObject(
+//   new Square({ x: 100, y: 100, width: 25, height: 100, speed: 30 })
+// );
 
-game.addObject(new Ball({ x: 250, y: 100, radius: 10, speed: 20 }));
+game.addObject(
+  new Ball({
+    name: "ball1",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball2",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball3",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball4",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball5",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball6",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball7",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball8",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball9",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball10",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball11",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
+game.addObject(
+  new Ball({
+    name: "ball12",
+    x: RandomValues.getRandomValue(1, 700),
+    y: RandomValues.getRandomValue(1, 700),
+    radius: 20,
+    color: RandomValues.getRandomColor(),
+    speed: 5,
+  })
+);
 
 //start the game
 game.start();

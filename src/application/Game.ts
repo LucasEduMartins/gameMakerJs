@@ -1,3 +1,4 @@
+import { CanvasAdpter, KeyBoardEventListenerAdapter } from "../core/adapters";
 import { GenericObject } from "../core/model";
 import { InputHandleObjectPort, UIHandleObjectPort } from "../core/ports";
 import { GamePropsType } from "./types";
@@ -7,10 +8,26 @@ export default class Game {
   private inputHandleObjectPort: InputHandleObjectPort;
   private objects: GenericObject[] = [];
 
-  constructor(private props: GamePropsType) {
+  constructor({
+    height,
+    width,
+    inputHandleObjectPort,
+    uiHandleObjectPort,
+  }: GamePropsType) {
+    if (!uiHandleObjectPort)
+      this.uiHandleObjectPort = new CanvasAdpter({
+        width,
+        height,
+      });
+
+    if (!inputHandleObjectPort)
+      this.inputHandleObjectPort = new KeyBoardEventListenerAdapter();
+
     this.uiHandleObjectPort.createContainer();
     this.setupInput();
   }
+
+  private setDependencies() {}
 
   addObject(object: GenericObject) {
     this.objects.push(object);
@@ -25,7 +42,7 @@ export default class Game {
 
   private update() {
     for (const object of this.objects) {
-      object.update();
+      object.update(this);
     }
   }
 
@@ -42,11 +59,21 @@ export default class Game {
   }
 
   start() {
+    this.setDependencies();
+
     const gameLoop = () => {
       this.update();
       this.render();
       requestAnimationFrame(gameLoop);
     };
     gameLoop();
+  }
+
+  getContainer() {
+    return this.uiHandleObjectPort.getContainer();
+  }
+
+  getObjects() {
+    return this.objects;
   }
 }
