@@ -1,1 +1,1 @@
-export { Rect, Circle, GenericObject, Game } from "./src";
+export { Rect, Circle, GenericObject, Game, RandomValues } from "./src";

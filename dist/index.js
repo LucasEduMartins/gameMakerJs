@@ -1,8 +1,8 @@
 var d = Object.defineProperty;
-var l = (i, e, t) => e in i ? d(i, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : i[e] = t;
-var s = (i, e, t) => (l(i, typeof e != "symbol" ? e + "" : e, t), t);
-class a {
-  constructor({ name: e, height: t, width: n, x: c, y: h, color: o, speed: r }) {
+var l = (n, e, t) => e in n ? d(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
+var s = (n, e, t) => (l(n, typeof e != "symbol" ? e + "" : e, t), t);
+class h {
+  constructor({ name: e, height: t, width: i, x: a, y: o, color: c, speed: r }) {
     s(this, "name");
     s(this, "x");
     s(this, "y");
@@ -10,15 +10,15 @@ class a {
     s(this, "height");
     s(this, "color");
     s(this, "speed");
-    this.name = e, this.height = t, this.width = n, this.x = c, this.y = h, this.color = o || "#0000ff", this.speed = r || 1;
+    this.name = e, this.height = t, this.width = i, this.x = a, this.y = o, this.color = c || "#0000ff", this.speed = r || 1;
   }
 }
-class u extends a {
-  constructor({ name: e, radius: t, x: n, y: c, color: h, speed: o }) {
-    super({ name: e, height: t, width: t, x: n, y: c, color: h, speed: o });
+class u extends h {
+  constructor({ name: e, radius: t, x: i, y: a, color: o, speed: c }) {
+    super({ name: e, height: t, width: t, x: i, y: a, color: o, speed: c });
   }
 }
-class p extends a {
+class p extends h {
 }
 class b {
   constructor({ width: e, height: t }) {
@@ -59,27 +59,27 @@ class b {
       ), this.context.fillRect(t.x, t.y, t.width, t.height));
   }
 }
-class j {
+class f {
   addInputListener(e) {
     document.addEventListener("keydown", (t) => {
       e(t);
     });
   }
 }
-class f {
+class g {
   constructor({
     height: e,
     width: t,
-    inputHandleObjectPort: n,
-    uiHandleObjectPort: c
+    inputHandleObjectPort: i,
+    uiHandleObjectPort: a
   }) {
     s(this, "uiHandleObjectPort");
     s(this, "inputHandleObjectPort");
     s(this, "objects", []);
-    c || (this.uiHandleObjectPort = new b({
+    a || (this.uiHandleObjectPort = new b({
       width: t,
       height: e
-    })), n || (this.inputHandleObjectPort = new j()), this.uiHandleObjectPort.createContainer(), this.setupInput();
+    })), i || (this.inputHandleObjectPort = new f()), this.uiHandleObjectPort.createContainer(), this.setupInput();
   }
   setDependencies() {
   }
@@ -117,9 +117,19 @@ class f {
     return this.objects;
   }
 }
+class j {
+  static getRandomValue(e, t) {
+    return Math.floor(Math.random() * t) + e;
+  }
+  static getRandomColor() {
+    const e = Math.floor(Math.random() * 256), t = Math.floor(Math.random() * 256), i = Math.floor(Math.random() * 256);
+    return `#${e.toString(16).padStart(2, "0")}${t.toString(16).padStart(2, "0")}${i.toString(16).padStart(2, "0")}`;
+  }
+}
 export {
   u as Circle,
-  f as Game,
-  a as GenericObject,
+  g as Game,
+  h as GenericObject,
+  j as RandomValues,
   p as Rect
 };
