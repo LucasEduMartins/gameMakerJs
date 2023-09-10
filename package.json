@@ -22,7 +22,7 @@
   ],
   "homepage": "https://LucasEduMartins.github.io/gameMakerJs",
   "scripts": {
-    "demo": "vite --open demo/index.html",
+    "demo": "npm run build && vite --open demo/index.html",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
