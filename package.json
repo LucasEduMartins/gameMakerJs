@@ -25,6 +25,7 @@
     "demo": "vite --open demo/index.html",
     "dev": "vite",
     "build": "tsc && vite build",
+    "test": "jest",
     "preview": "vite preview",
     "prepublish": "npm run build",
     "predeploy": "npm run build",
