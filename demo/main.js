@@ -1,5 +1,4 @@
-import { Circle, GenericObject, Rect } from "../src/components";
-import { CirclePropsType } from "../src/components/objects/Circle";
+import { Circle, Rect } from "../src/components";
 import { Game } from "../src/controllers";
 
 // create a custom Rect to your game
