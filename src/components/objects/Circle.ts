@@ -5,14 +5,16 @@ export type CirclePropsType = Omit<ObjectType, "width" | "height"> & {
 };
 
 export abstract class Circle extends GenericObject {
+  radius: number;
   constructor({ radius, x, y, color }: CirclePropsType) {
-    super({ height: radius * 2, width: radius * 2, x, y, color });
+    super({ x, y, color });
+    this.radius = radius;
   }
 
   render(game: Game): void {
     game.getContext().fillStyle = this.color;
     game.getContext().beginPath();
-    game.getContext().arc(this.x, this.y, this.width, 0, Math.PI * 2, false);
+    game.getContext().arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     game.getContext().fill();
   }
 }

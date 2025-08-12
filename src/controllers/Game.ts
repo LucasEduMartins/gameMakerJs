@@ -6,6 +6,19 @@ export type GamePropsType = {
 };
 
 class Game {
+  private events: { [key: string]: Function[] } = {};
+  on(event: string, handler: Function) {
+    if (!this.events[event]) this.events[event] = [];
+    this.events[event].push(handler);
+  }
+
+  emit(event: string, data?: any) {
+    if (this.events[event]) {
+      for (const handler of this.events[event]) {
+        handler(data);
+      }
+    }
+  }
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private objects: GenericObject[] = [];
@@ -37,6 +50,18 @@ class Game {
   }
 
   update() {
+    // Check collisions before/after update
+    for (let i = 0; i < this.objects.length; i++) {
+      for (let j = i + 1; j < this.objects.length; j++) {
+        const objA = this.objects[i];
+        const objB = this.objects[j];
+        if (typeof objA.collidesWith === 'function' && objA.collidesWith([objB], this)) {
+          this.emit('collision', { objectA: objA, objectB: objB });
+        } else if (typeof objB.collidesWith === 'function' && objB.collidesWith([objA], this)) {
+          this.emit('collision', { objectA: objB, objectB: objA });
+        }
+      }
+    }
     for (const object of this.objects) {
       object.update(this);
     }
